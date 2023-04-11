@@ -1,0 +1,39 @@
+The 3-WaySplit MergeSort variant is a modification of the classic MergeSort algorithm that divides the input array into three sub-arrays instead of two. The steps of the algorithm are as follows:
+
+Divide the array into three sub-arrays of approximately equal size.
+Sort the three sub-arrays recursively using the same algorithm.
+Merge the three sorted sub-arrays into a single sorted array.
+To merge the three sorted sub-arrays, the algorithm compares the first element of each sub-array and selects the smallest one to add to the output array. This process is repeated until all elements have been added to the output array.
+
+Analysis:
+
+Number of comparisons:
+Worst case: The worst case occurs when the largest element of the smallest sub-array is smaller than the smallest element of the largest sub-array. In this case, the algorithm needs to compare each element of the three sub-arrays to determine the smallest element to add to the output array. Therefore, the worst-case number of comparisons is 3nlog3(n), where n is the size of the input array.
+
+Best case: The best case occurs when one of the sub-arrays is empty. In this case, the algorithm only needs to compare elements from the non-empty sub-arrays. Therefore, the best-case number of comparisons is nlog3(n).
+
+
+Recurrence relation:
+T(n) = 3T(n/3) + 3nlog3(n)
+
+Closed form solution:
+Using backwards substitution, we can find the closed form solution for the worst-case number of comparisons:
+T(n) = 3T(n/3) + 3nlog3(n)
+= 3[3T(n/9) + 3(n/3)log3(n/3)] + 3nlog3(n)
+= 9T(n/9) + 3nlog3(n) + 3nlog3(n/3)
+= 9[3T(n/27) + 3(n/9)log3(n/9)] + 3nlog3(n) + 3nlog3(n/3)
+= 27T(n/27) + 3nlog3(n) + 3nlog3(n/3) + 3nlog3(n/9)
+= 27T(n/27) + 3n[log3(n) + log3(n/3) + log3(n/9)]
+= 27T(n/27) + 3nlog3(n!) - 3nlog3(3^k)
+where k is the number of times n is divided by 3. Since n is a power of 3, we can write k = log3(n). Therefore:
+T(n) = 27T(n/27) + 3nlog3(n!) - 3nlog3(n)
+
+Time complexity:
+The time complexity of the 3-WaySplit MergeSort variant can be expressed using the Big-O notation as O(nlog3(n)).
+
+Comparing with 2-Way MergeSort:
+
+The exact worst-case number of comparisons for the 2-way merge is 2nlog2(n).
+The exact worst-case number of comparisons for the 3-way merge is 3nlog3(n).
+The 3-way merge is more efficient, as it has a lower worst-case number of comparisons for the same input size.
+The time complexity of the 2-way MergeSort is O(nlog2(n)), which is the same as the worst-case time complexity of the 3-way MergeSort. However, the 3-way MergeSort has a lower worst-case number of comparisons, which makes it more efficient in the worst case.
